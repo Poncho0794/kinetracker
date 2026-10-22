@@ -1,7 +1,12 @@
 import { Exercise, Routine, User, WorkoutLog } from '../types';
 
 const API_BASE_URL =
-  (import.meta.env.VITE_API_URL as string) || 'http://localhost:3000/api';
+  (import.meta.env.VITE_API_URL as string) ||
+  (typeof window !== 'undefined' &&
+  window.location.hostname !== 'localhost' &&
+  window.location.hostname !== '127.0.0.1'
+    ? '/api'
+    : 'http://localhost:3000/api');
 
 export const initialUser: User = {
   id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
