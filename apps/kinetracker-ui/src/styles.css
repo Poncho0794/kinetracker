@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #10141a;
+    color: #dfe2eb;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Tabular figures for weights, reps and timers to prevent layout shifts */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Kinetic glow utilities */
+.glow-primary {
+  box-shadow: 0 0 24px -4px rgba(255, 84, 0, 0.25);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 24px -4px rgba(255, 122, 0, 0.20);
+}
+
+/* Custom scrollbar hiding */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #10141a;
+}
+::-webkit-scrollbar-thumb {
+  background: #262a31;
+  border-radius: 9999px;
+}

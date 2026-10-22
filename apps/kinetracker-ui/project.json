@@ -1,0 +1,9 @@
+{
+  "name": "kinetracker-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kinetracker-ui/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project kinetracker-ui --web",
+  "targets": {}
+}
