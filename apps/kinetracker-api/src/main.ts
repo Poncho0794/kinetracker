@@ -26,8 +26,27 @@ export async function createNestServer(
   logger.setContext('Bootstrap');
   app.useLogger(logger);
 
-  // Security Headers via Helmet
-  app.use(helmet());
+  // Security Headers via Helmet (configured to allow Swagger UI CDN assets)
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: [`'self'`],
+          scriptSrc: [
+            `'self'`,
+            `'unsafe-inline'`,
+            `https://cdnjs.cloudflare.com`,
+          ],
+          styleSrc: [
+            `'self'`,
+            `'unsafe-inline'`,
+            `https://cdnjs.cloudflare.com`,
+          ],
+          imgSrc: [`'self'`, 'data:', 'https:'],
+        },
+      },
+    })
+  );
 
   // CORS Configuration aligned with OWASP baseline
   const allowedOrigins = process.env.CORS_ORIGIN
@@ -85,7 +104,16 @@ export async function createNestServer(
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup(`${globalPrefix}/docs`, app, document);
+  SwaggerModule.setup(`${globalPrefix}/docs`, app, document, {
+    customSiteTitle: 'KineTracker API — Documentación Swagger',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-bundle.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-standalone-preset.js',
+    ],
+    customCssUrl: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui.min.css',
+    ],
+  });
 
   return app;
 }
