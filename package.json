@@ -2,7 +2,14 @@
   "name": "@kine-tracker/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "nx run-many -t build",
+    "build:api": "nx build kinetracker-api",
+    "build:ui": "nx build kinetracker-ui",
+    "serve:api": "nx serve kinetracker-api",
+    "serve:ui": "nx serve kinetracker-ui",
+    "test": "nx run-many -t test"
+  },
   "private": true,
   "devDependencies": {
     "@nestjs/schematics": "^11.0.0",

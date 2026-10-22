@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Vercel Deployment Support**:
+  - Serverless execution handler and dynamic CORS support for Vercel in `apps/kinetracker-api/src/main.ts`.
+  - Vercel configuration files: `apps/kinetracker-api/vercel.json` (serverless node function) and `apps/kinetracker-ui/vercel.json` (SPA routing rewrites).
+  - Configurable `VITE_API_URL` environment variable support in `apps/kinetracker-ui/src/services/api.ts` with local fallback.
+  - Root `api/index.ts` serverless adapter bridge.
+  - Step-by-step deployment guide in `DEPLOYMENT_VERCEL.md`.
+  - Helper build scripts in `package.json` (`build:api`, `build:ui`, `serve:api`, `serve:ui`).
 - Monorepo setup with **Nx 24** (`apps/kinetracker-ui` and `apps/kinetracker-api`).
 - **`kinetracker-ui`**: Frontend application in React 19, Vite, and Tailwind CSS using tokens and layout from [`DESIGN.md`](./DESIGN.md) and Stitch.
   - Interactive components: `Header`, `MetricCards`, `ExerciseCard`, `LoggingModal`, and `CreateRoutineModal`.
